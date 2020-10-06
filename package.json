@@ -29,7 +29,8 @@
     "publish:beta": "npm publish --tag beta",
     "publish:canary": "npm publish --tag canary",
     "lint": "standard",
-    "lint:fix": "standard --fix"
+    "lint:fix": "standard --fix",
+    "postinstall": "cd ./node_modules/next-auth && npm install && npm run build"
   },
   "files": [
     "dist",
