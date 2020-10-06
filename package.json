@@ -30,7 +30,7 @@
     "publish:canary": "npm publish --tag canary",
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "postinstall": "npm install && npm run build"
+    "postinstall": "npm run build"
   },
   "files": [
     "dist",
