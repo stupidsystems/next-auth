@@ -64,7 +64,7 @@ var _default = (_ref) => {
 
   return (0, _preactRenderToString.default)((0, _preact.h)("div", {
     className: "signin"
-  }, errorMessage && (0, _preact.h)("div", {
+  }, (0, _preact.h)("h1", null, "Sign into Stupidfits!"), errorMessage && (0, _preact.h)("div", {
     className: "error"
   }, errorMessage), providersToRender.map((provider, i) => (0, _preact.h)("div", {
     key: provider.id,
@@ -86,7 +86,7 @@ var _default = (_ref) => {
   }, "Sign in with ", provider.name)), (provider.type === "email" || provider.type === "credentials") && i > 0 && providersToRender[i - 1].type !== "email" && providersToRender[i - 1].type !== "credentials" && (0, _preact.h)("hr", null), provider.type === "email" && (0, _preact.h)("form", {
     action: provider.signinUrl,
     method: "POST"
-  }, (0, _preact.h)("input", {
+  }, provider.preface && (0, _preact.h)("p", null, provider.preface), (0, _preact.h)("input", {
     type: "hidden",
     name: "csrfToken",
     value: csrfToken

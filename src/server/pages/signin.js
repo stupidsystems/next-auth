@@ -53,6 +53,7 @@ export default ({ req, csrfToken, providers, callbackUrl }) => {
 
   return render(
     <div className="signin">
+      <h1>Sign into Stupidfits!</h1>
       {errorMessage && <div className="error">{errorMessage}</div>}
       {providersToRender.map((provider, i) => (
         <div key={provider.id} className="provider">
@@ -74,6 +75,7 @@ export default ({ req, csrfToken, providers, callbackUrl }) => {
             providersToRender[i - 1].type !== "credentials" && <hr />}
           {provider.type === "email" && (
             <form action={provider.signinUrl} method="POST">
+              {provider.preface && <p>{provider.preface}</p>}
               <input type="hidden" name="csrfToken" value={csrfToken} />
               <label for={`input-email-for-${provider.id}-provider`}>
                 Email
