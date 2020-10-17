@@ -21,7 +21,7 @@ var _default = options => {
   return _objectSpread({
     id: "email",
     type: "email",
-    preface: "We'll send you an email that you can use to create an account and sign in. That link can be used .",
+    preface: "We'll send you an email that you can use to create an account and sign in.",
     name: "Email",
     server: {
       host: "localhost",

@@ -6,7 +6,7 @@ export default (options) => {
     id: "email",
     type: "email",
     preface:
-      "We'll send you an email that you can use to create an account and sign in. That link can be used .",
+      "We'll send you an email that you can use to create an account and sign in.",
     name: "Email",
     // Server can be an SMTP connection string or a nodemailer config object
     server: {
