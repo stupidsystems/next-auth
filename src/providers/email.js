@@ -1,50 +1,56 @@
-import nodemailer from 'nodemailer'
-import logger from '../lib/logger'
+import nodemailer from "nodemailer";
+import logger from "../lib/logger";
 
 export default (options) => {
   return {
-    id: 'email',
-    type: 'email',
-    name: 'Email',
+    id: "email",
+    type: "email",
+    name: "Email",
     // Server can be an SMTP connection string or a nodemailer config object
     server: {
-      host: 'localhost',
+      host: "localhost",
       port: 25,
       auth: {
-        user: '',
-        pass: ''
-      }
+        user: "",
+        pass: "",
+      },
     },
-    from: 'NextAuth <no-reply@example.com>',
+    from: "NextAuth <no-reply@example.com>",
     maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
     sendVerificationRequest,
-    ...options
-  }
-}
+    ...options,
+  };
+};
 
-const sendVerificationRequest = ({ identifier: email, url, baseUrl, provider }) => {
+const sendVerificationRequest = ({
+  identifier: email,
+  url,
+  baseUrl,
+  provider,
+}) => {
   return new Promise((resolve, reject) => {
-    const { server, from } = provider
+    const { server, from } = provider;
     // Strip protocol from URL and use domain as site name
-    const site = baseUrl.replace(/^https?:\/\//, '')
+    const site = baseUrl.replace(/^https?:\/\//, "");
 
-    nodemailer
-      .createTransport(server)
-      .sendMail({
+    nodemailer.createTransport(server).sendMail(
+      {
         to: email,
         from,
         subject: `Sign in to ${site}`,
         text: text({ url, site, email }),
-        html: html({ url, site, email })
-      }, (error) => {
+        html: html({ url, site, email }),
+      },
+      (error) => {
         if (error) {
-          logger.error('SEND_VERIFICATION_EMAIL_ERROR', email, error)
-          return reject(new Error('SEND_VERIFICATION_EMAIL_ERROR', error))
+          logger.error("SEND_VERIFICATION_EMAIL_ERROR", email, error);
+          return reject(new Error("SEND_VERIFICATION_EMAIL_ERROR", error));
         }
-        return resolve()
-      })
-  })
-}
+        return resolve();
+      }
+    );
+  });
+};
 
 // Email HTML body
 const html = ({ url, site, email }) => {
@@ -52,16 +58,16 @@ const html = ({ url, site, email }) => {
   // email address and the domain from being turned into a hyperlink by email
   // clients like Outlook and Apple mail, as this is confusing because it seems
   // like they are supposed to click on their email address to sign in.
-  const escapedEmail = `${email.replace(/\./g, '&#8203;.')}`
-  const escapedSite = `${site.replace(/\./g, '&#8203;.')}`
+  const escapedEmail = `${email.replace(/\./g, "&#8203;.")}`;
+  const escapedSite = `${site.replace(/\./g, "&#8203;.")}`;
 
   // Some simple styling options
-  const backgroundColor = '#f9f9f9'
-  const textColor = '#444444'
-  const mainBackgroundColor = '#ffffff'
-  const buttonBackgroundColor = '#346df1'
-  const buttonBorderColor = '#346df1'
-  const buttonTextColor = '#ffffff'
+  const backgroundColor = "#f9f9f9";
+  const textColor = "#444444";
+  const mainBackgroundColor = "#ffffff";
+  const buttonBackgroundColor = "#346df1";
+  const buttonBorderColor = "#346df1";
+  const buttonTextColor = "#ffffff";
 
   return `
 <body style="background: ${backgroundColor};">
@@ -74,6 +80,11 @@ const html = ({ url, site, email }) => {
   </table>
   <table width="100%" border="0" cellspacing="20" cellpadding="0" style="background: ${mainBackgroundColor}; max-width: 600px; margin: auto; border-radius: 10px;">
     <tr>
+    <td align="center" style="padding: 10px 0px 0px 0px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
+    Thanks for using Stupid Fits! We use this login method for security purposes. You don't need a password, just use your email. It'll be the same when you login next time.
+  </td>
+    </tr>
+    <tr>
       <td align="center" style="padding: 10px 0px 0px 0px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
         Sign in as <strong>${escapedEmail}</strong>
       </td>
@@ -84,6 +95,10 @@ const html = ({ url, site, email }) => {
           <tr>
             <td align="center" style="border-radius: 5px;" bgcolor="${buttonBackgroundColor}"><a href="${url}" target="_blank" style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${buttonTextColor}; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ${buttonBorderColor}; display: inline-block; font-weight: bold;">Sign in</a></td>
           </tr>
+          <tr>
+          <td align="center" style="padding: 10px 0px 0px 0px; font-size: 12px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
+            If you're using a mobile browser, it might open the app in the local email client browser. You probably want to open it in mobile Safari or Chrome, so we recommend copying this URL to the browser you want to use:<br/> ${url}
+          </td>
         </table>
       </td>
     </tr>
@@ -94,8 +109,8 @@ const html = ({ url, site, email }) => {
     </tr>
   </table>
 </body>
-`
-}
+`;
+};
 
 // Email Text body (fallback for email clients that don't render HTML, e.g. feature phones)
-const text = ({ url, site }) => `Sign in to ${site}\n${url}\n\n`
+const text = ({ url, site }) => `Sign in to ${site}\n${url}\n\n`;
