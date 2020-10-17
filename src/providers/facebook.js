@@ -3,7 +3,7 @@ export default (options) => {
     id: "facebook",
     name: "Facebook",
     preface:
-      "Since instagram is a facebook application, we figure this is a safe way to log you in. If you don't have a facebook account though, you can use another method.",
+      "Stupidfits syncs with instagram, and since instagram is a facebook application it's a good way to sign in.",
     type: "oauth",
     version: "2.0",
     scope: "email",

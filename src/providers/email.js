@@ -6,7 +6,7 @@ export default (options) => {
     id: "email",
     type: "email",
     preface:
-      "We'll send you an email that you can use to create an account or sign in. Click on or copy the link to the browser you want to use Stupid Fits in.",
+      "We'll send you an email that you can use to create an account and sign in. That link can be used .",
     name: "Email",
     // Server can be an SMTP connection string or a nodemailer config object
     server: {
@@ -65,10 +65,10 @@ const html = ({ url, site, email }) => {
 
   // Some simple styling options
   const backgroundColor = "#f9f9f9";
-  const textColor = "#444444";
+  const textColor = "#151515";
   const mainBackgroundColor = "#ffffff";
-  const buttonBackgroundColor = "#346df1";
-  const buttonBorderColor = "#346df1";
+  const buttonBackgroundColor = "#151515";
+  const buttonBorderColor = "#151515";
   const buttonTextColor = "#ffffff";
 
   return `
@@ -76,7 +76,7 @@ const html = ({ url, site, email }) => {
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td align="center" style="padding: 10px 0px 20px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
-        <strong>${escapedSite}</strong>
+        <strong>Stupid Fits</strong>
       </td>
     </tr>
   </table>
@@ -106,7 +106,7 @@ const html = ({ url, site, email }) => {
     </tr>
     <tr>
       <td align="center" style="padding: 0px 0px 10px 0px; font-size: 16px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
-        If you did not request this email you can safely ignore it.
+        If you did not request this email you can safely ignore it.<br />If something isn't working, send me a note at alb@stupidfits.com.
       </td>
     </tr>
   </table>

@@ -51,10 +51,16 @@ body {
   text-align: center;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Futura";
+  color: #ffffff;
+}
 h1 {
-  font-weight: 400;
-  margin-bottom: 1.5rem;
-  padding: 0 1rem;
+  font-size: 3rem;
+  letter-spacing: 0;
 }
 
 form {
@@ -74,6 +80,7 @@ input[type] {
   box-sizing: border-box;
   display: block;
   width: 100%;
+  max-width: 300px;
   padding: 0.5rem 1rem;
   border: var(--border-width) solid var(--color-control-border);
   background: var(--color-background);
