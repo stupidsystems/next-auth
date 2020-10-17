@@ -19,18 +19,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var _default = options => {
   return _objectSpread({
-    id: 'email',
-    type: 'email',
-    name: 'Email',
+    id: "email",
+    type: "email",
+    name: "Email",
     server: {
-      host: 'localhost',
+      host: "localhost",
       port: 25,
       auth: {
-        user: '',
-        pass: ''
+        user: "",
+        pass: ""
       }
     },
-    from: 'NextAuth <no-reply@example.com>',
+    from: "NextAuth <no-reply@example.com>",
     maxAge: 24 * 60 * 60,
     sendVerificationRequest
   }, options);
@@ -50,7 +50,7 @@ var sendVerificationRequest = (_ref) => {
       server,
       from
     } = provider;
-    var site = baseUrl.replace(/^https?:\/\//, '');
+    var site = baseUrl.replace(/^https?:\/\//, "");
 
     _nodemailer.default.createTransport(server).sendMail({
       to: email,
@@ -68,9 +68,9 @@ var sendVerificationRequest = (_ref) => {
       })
     }, error => {
       if (error) {
-        _logger.default.error('SEND_VERIFICATION_EMAIL_ERROR', email, error);
+        _logger.default.error("SEND_VERIFICATION_EMAIL_ERROR", email, error);
 
-        return reject(new Error('SEND_VERIFICATION_EMAIL_ERROR', error));
+        return reject(new Error("SEND_VERIFICATION_EMAIL_ERROR", error));
       }
 
       return resolve();
@@ -84,15 +84,15 @@ var html = (_ref2) => {
     site,
     email
   } = _ref2;
-  var escapedEmail = "".concat(email.replace(/\./g, '&#8203;.'));
-  var escapedSite = "".concat(site.replace(/\./g, '&#8203;.'));
-  var backgroundColor = '#f9f9f9';
-  var textColor = '#444444';
-  var mainBackgroundColor = '#ffffff';
-  var buttonBackgroundColor = '#346df1';
-  var buttonBorderColor = '#346df1';
-  var buttonTextColor = '#ffffff';
-  return "\n<body style=\"background: ".concat(backgroundColor, ";\">\n  <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n    <tr>\n      <td align=\"center\" style=\"padding: 10px 0px 20px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: ").concat(textColor, ";\">\n        <strong>").concat(escapedSite, "</strong>\n      </td>\n    </tr>\n  </table>\n  <table width=\"100%\" border=\"0\" cellspacing=\"20\" cellpadding=\"0\" style=\"background: ").concat(mainBackgroundColor, "; max-width: 600px; margin: auto; border-radius: 10px;\">\n    <tr>\n      <td align=\"center\" style=\"padding: 10px 0px 0px 0px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ").concat(textColor, ";\">\n        Sign in as <strong>").concat(escapedEmail, "</strong>\n      </td>\n    </tr>\n    <tr>\n      <td align=\"center\" style=\"padding: 20px 0;\">\n        <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n          <tr>\n            <td align=\"center\" style=\"border-radius: 5px;\" bgcolor=\"").concat(buttonBackgroundColor, "\"><a href=\"").concat(url, "\" target=\"_blank\" style=\"font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ").concat(buttonTextColor, "; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ").concat(buttonBorderColor, "; display: inline-block; font-weight: bold;\">Sign in</a></td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n    <tr>\n      <td align=\"center\" style=\"padding: 0px 0px 10px 0px; font-size: 16px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: ").concat(textColor, ";\">\n        If you did not request this email you can safely ignore it.\n      </td>\n    </tr>\n  </table>\n</body>\n");
+  var escapedEmail = "".concat(email.replace(/\./g, "&#8203;."));
+  var escapedSite = "".concat(site.replace(/\./g, "&#8203;."));
+  var backgroundColor = "#f9f9f9";
+  var textColor = "#444444";
+  var mainBackgroundColor = "#ffffff";
+  var buttonBackgroundColor = "#346df1";
+  var buttonBorderColor = "#346df1";
+  var buttonTextColor = "#ffffff";
+  return "\n<body style=\"background: ".concat(backgroundColor, ";\">\n  <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n    <tr>\n      <td align=\"center\" style=\"padding: 10px 0px 20px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: ").concat(textColor, ";\">\n        <strong>").concat(escapedSite, "</strong>\n      </td>\n    </tr>\n  </table>\n  <table width=\"100%\" border=\"0\" cellspacing=\"20\" cellpadding=\"0\" style=\"background: ").concat(mainBackgroundColor, "; max-width: 600px; margin: auto; border-radius: 10px;\">\n    <tr>\n    <td align=\"center\" style=\"padding: 10px 0px 0px 0px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ").concat(textColor, ";\">\n    Thanks for using Stupid Fits! We use this login method for security purposes. You don't need a password, just use your email. It'll be the same when you login next time.\n  </td>\n    </tr>\n    <tr>\n      <td align=\"center\" style=\"padding: 10px 0px 0px 0px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ").concat(textColor, ";\">\n        Sign in as <strong>").concat(escapedEmail, "</strong>\n      </td>\n    </tr>\n    <tr>\n      <td align=\"center\" style=\"padding: 20px 0;\">\n        <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n          <tr>\n            <td align=\"center\" style=\"border-radius: 5px;\" bgcolor=\"").concat(buttonBackgroundColor, "\"><a href=\"").concat(url, "\" target=\"_blank\" style=\"font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ").concat(buttonTextColor, "; text-decoration: none; text-decoration: none;border-radius: 5px; padding: 10px 20px; border: 1px solid ").concat(buttonBorderColor, "; display: inline-block; font-weight: bold;\">Sign in</a></td>\n          </tr>\n          <tr>\n          <td align=\"center\" style=\"padding: 10px 0px 0px 0px; font-size: 12px; font-family: Helvetica, Arial, sans-serif; color: ").concat(textColor, ";\">\n            If you're using a mobile browser, it might open the app in the local email client browser. You probably want to open it in mobile Safari or Chrome, so we recommend copying this URL to the browser you want to use:<br/> ").concat(url, "\n          </td>\n        </table>\n      </td>\n    </tr>\n    <tr>\n      <td align=\"center\" style=\"padding: 0px 0px 10px 0px; font-size: 16px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: ").concat(textColor, ";\">\n        If you did not request this email you can safely ignore it.\n      </td>\n    </tr>\n  </table>\n</body>\n");
 };
 
 var text = (_ref3) => {
